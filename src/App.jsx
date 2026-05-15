@@ -1,38 +1,64 @@
-import React, { useState } from 'react'
-import ProductList from './components/ProductList'
-import DarkModeToggle from './components/DarkModeToggle'
-import Cart from './components/Cart'
+
+import React, { useState } from "react";
+import ProductList from "./components/ProductList";
+import DarkModeToggle from "./components/DarkModeToggle";
+import Cart from "./components/Cart";
 
 const App = () => {
-  // TODO: Implement state for dark mode toggle
+  // 🌙 Dark mode state
+  const [darkMode, setDarkMode] = useState(false);
 
-  // TODO: Implement state for cart management
+  // 🛒 Cart state
+  const [cart, setCart] = useState([]);
 
-  // TODO: Implement state for category filtering
+  // 📂 Category filter state
+  const [category, setCategory] = useState("all");
+
+  // Toggle dark mode
+  const toggleDarkMode = () => {
+    setDarkMode((prev) => !prev);
+  };
+
+  // Add to cart
+  const addToCart = (product) => {
+    setCart((prev) => [...prev, product]);
+  };
 
   return (
-    <div>
+    <div className={darkMode ? "dark" : "light"}>
       <h1>🛒 Shopping App</h1>
       <p>
         Welcome! Your task is to implement filtering, cart management, and dark
         mode.
       </p>
 
-      {/* TODO: Render DarkModeToggle and implement dark mode functionality */}
+      {/* 🌙 Dark Mode Toggle */}
+      <DarkModeToggle
+        darkMode={darkMode}
+        toggleDarkMode={toggleDarkMode}
+      />
 
-      {/* TODO: Implement category filter dropdown */}
+      {/* 📂 Category Filter */}
       <label>Filter by Category: </label>
-      <select>
+      <select
+        value={category}
+        onChange={(e) => setCategory(e.target.value)}
+      >
         <option value="all">All</option>
         <option value="Fruits">Fruits</option>
         <option value="Dairy">Dairy</option>
       </select>
 
-      <ProductList />
+      {/* 🛍️ Product List */}
+      <ProductList
+        category={category}
+        addToCart={addToCart}
+      />
 
-      {/* TODO: Implement and render Cart component */}
+      {/* 🛒 Cart */}
+      <Cart cart={cart} />
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;
