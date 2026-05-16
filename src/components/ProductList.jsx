@@ -3,12 +3,24 @@ import ProductCard from './ProductCard'
 
 // Sample product data
 export const sampleProducts = [
-  { id: 1, name: 'Apple', price: '$1.00', category: 'Fruits', inStock: true },
-  { id: 2, name: 'Milk', price: '$2.50', category: 'Dairy', inStock: false }
+  {
+    id: 1,
+    name: 'Apple',
+    price: '$1.00',
+    category: 'Fruits',
+    inStock: true
+  },
+  {
+    id: 2,
+    name: 'Milk',
+    price: '$2.50',
+    category: 'Dairy',
+    inStock: false
+  }
 ]
 
 const ProductList = ({ category, addToCart }) => {
-  // Filter products
+  // Filter products by category
   const filteredProducts =
     category === 'all'
       ? sampleProducts
@@ -32,5 +44,3 @@ const ProductList = ({ category, addToCart }) => {
 }
 
 export default ProductList
-
-
