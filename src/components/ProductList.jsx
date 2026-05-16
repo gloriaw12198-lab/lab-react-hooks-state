@@ -32,13 +32,18 @@ const ProductList = ({ category, addToCart }) => {
     <div>
       <h2>Available Products</h2>
 
-      {filteredProducts.map((product) => (
-        <ProductCard
-          key={product.id}
-          product={product}
-          addToCart={addToCart}
-        />
-      ))}
+      {/* Show message if no products match */}
+      {filteredProducts.length === 0 ? (
+        <p>No products available.</p>
+      ) : (
+        filteredProducts.map((product) => (
+          <ProductCard
+            key={product.id}
+            product={product}
+            addToCart={addToCart}
+          />
+        ))
+      )}
     </div>
   )
 }
